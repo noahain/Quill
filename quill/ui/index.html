@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quill Settings</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Quill Settings</h1>
+      <p class="subtitle">Voice-to-text configuration</p>
+    </header>
+
+    <section class="card">
+      <label for="provider-select">Provider</label>
+      <select id="provider-select">
+        <option value="nvidia">NVIDIA NIM (Parakeet)</option>
+        <option value="groq">Groq (Whisper-large-v3)</option>
+      </select>
+    </section>
+
+    <section id="nvidia-section" class="card">
+      <label for="api-key">NVIDIA API Key</label>
+      <div class="input-row">
+        <input id="api-key" type="password" placeholder="Paste your NVIDIA API key" />
+        <button id="toggle-nvidia-key" type="button">Show</button>
+      </div>
+    </section>
+
+    <section id="groq-section" class="card hidden">
+      <label for="groq-api-key">Groq API Key</label>
+      <div class="input-row">
+        <input id="groq-api-key" type="password" placeholder="Paste your Groq API key" />
+        <button id="toggle-groq-key" type="button">Show</button>
+      </div>
+      <label for="groq-model-select" style="margin-top:12px">Model</label>
+      <select id="groq-model-select">
+        <option value="whisper-large-v3">Whisper-large-v3</option>
+        <option value="whisper-large-v3-turbo">Whisper-large-v3-turbo</option>
+      </select>
+    </section>
+
+    <section class="card">
+      <label id="shortcut-label">Global Shortcut</label>
+      <div class="shortcut-row">
+        <span id="shortcut-display" class="shortcut-display" aria-labelledby="shortcut-label">Ctrl + Shift + D</span>
+        <button id="capture-shortcut" type="button">Change</button>
+      </div>
+      <p id="capture-hint" class="hint hidden">Press your desired key combination…</p>
+    </section>
+
+    <footer>
+      <button id="save-btn" class="primary">Save</button>
+      <button id="cancel-btn">Cancel</button>
+    </footer>
+  </div>
+
+  <div id="live-region" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+  <script src="app.js"></script>
+</body>
+</html>
