@@ -37,6 +37,7 @@
   }
 
   function loadSettings() {
+    saveBtn.disabled = true;
     if (window.pywebview && window.pywebview.api) {
       window.pywebview.api.get_settings().then(function (settings) {
         apiKeyInput.value = settings.api_key || "";
@@ -46,9 +47,13 @@
         currentShortcut = settings.shortcut || DEFAULT_SHORTCUT;
         updateProviderUI();
         renderShortcut();
+        saveBtn.disabled = false;
       }).catch(function (err) {
         console.error("Failed to load settings:", err);
+        saveBtn.disabled = false;
       });
+    } else {
+      saveBtn.disabled = false;
     }
   }
 
