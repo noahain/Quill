@@ -94,23 +94,26 @@ class Api:
         self._app = app
 
     def get_settings(self):
-        logger.debug("JS API: get_settings called")
-        return {
+        result = {
             "api_key": self._app.settings.get("api_key"),
             "groq_api_key": self._app.settings.get("groq_api_key"),
             "groq_model": self._app.settings.get("groq_model"),
             "shortcut": self._app.settings.get("shortcut"),
             "provider": self._app.settings.get("provider"),
         }
+        logger.debug("JS API: get_settings → provider=%s model=%s", result["provider"], result["groq_model"])
+        return result
 
-    def save_settings(self, settings):
-        logger.info("JS API: save_settings called")
-        self._app.settings.set("api_key", settings.get("api_key", ""))
-        self._app.settings.set("groq_api_key", settings.get("groq_api_key", ""))
-        self._app.settings.set("groq_model", settings.get("groq_model", "whisper-large-v3"))
-        self._app.settings.set("shortcut", settings.get("shortcut", DEFAULTS["shortcut"]))
-        self._app.settings.set("provider", settings.get("provider", "nvidia"))
-        self._app.settings.save()
+    def save_settings(self, settings: dict):
+        logger.info("JS API: save_settings called with %d fields", len(settings))
+        shortcut = settings.get("shortcut", DEFAULTS["shortcut"])
+        self._app.settings.update({
+            "api_key": settings.get("api_key", ""),
+            "groq_api_key": settings.get("groq_api_key", ""),
+            "groq_model": settings.get("groq_model", "whisper-large-v3"),
+            "shortcut": shortcut,
+            "provider": settings.get("provider", "nvidia"),
+        })
         self._app.reload_shortcut()
 
     def close_window(self):

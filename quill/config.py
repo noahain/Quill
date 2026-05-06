@@ -59,3 +59,20 @@ class SettingsStore:
     def set(self, key: str, value):
         with self._lock:
             self._data[key] = value
+
+    def update(self, values: dict, *, save: bool = True) -> None:
+        """Atomically update multiple settings and persist."""
+        with self._lock:
+            self._data.update(values)
+            if save:
+                safe_data = dict(self._data)
+                for k in ("api_key", "groq_api_key"):
+                    if safe_data.get(k):
+                        safe_data[k] = safe_data[k][:4] + "\u2026"
+                logger.info("Saving settings to %s: %s", self._path, json.dumps(safe_data))
+                try:
+                    with open(self._path, "w", encoding="utf-8") as f:
+                        json.dump(self._data, f, indent=2)
+                        f.flush()
+                except (IOError, OSError) as e:
+                    logger.error("Failed to write settings: %s", e)
