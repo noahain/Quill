@@ -55,7 +55,7 @@ py -3.12 main.py
 
 Python 3.12 · `pywebview` · HTML/CSS/JS · NVIDIA NIM · Groq
 
-## Development story
+## Development team
 
 - **Lead:** Noahain - product vision, logic direction
 - **Primary developer:** OpenCode (Kimi K2.6) - global hotkey listeners, API integrations, frontend state
