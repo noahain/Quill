@@ -1,69 +1,67 @@
-![Quill Banner](assets/banner.png)
 
-**Quill** is a lightweight, low-latency dictation bridge that brings enterprise-grade Speech-to-Text to any application. By leveraging high-performance AI models, it transforms your voice into keystrokes instantly, providing a seamless "talk-to-type" experience via a global system hotkey.
+<div align="center">
+  <img src="assets/icon.png" width="144" height="144" alt="Quill" />
+  <h1>Quill</h1>
 
-## 🚀 Advanced Features
+  <p><strong>Dictation bridge that types your voice into any app</strong></p>
 
-### 🧠 Intelligent Dictation
-- **Universal Input**: Types directly into your active window—whether it's a code editor, browser, or chat app—simulating natural keyboard input.
-- **Multimodal STT Support**: Choose between **NVIDIA NIM** (Parakeet-1.1b) or **Groq** (OpenAI Whisper V3 & Flash) for lightning-fast transcription.
-- **Auditory Cues**: Immediate SFX feedback (configurable beep) to signal when the app is "listening" and when transcription is complete.
-
-### 🔒 Privacy & Architecture
-- **API-Driven Efficiency**: Utilizes free-tier limits from NVIDIA and Groq, ensuring high-performance ASR without the heavy local compute requirements.
-- **Global Hotkey Listener**: Runs silently in the background, listening for your custom key combination to trigger the recording session.
-- **Dynamic Configuration**: Easily swap between providers and models in the settings to optimize for speed or accuracy.
-
-### 📂 Data & Configuration
-Quill maintains a minimal footprint on your system:
-- **Default Directory:** `%APPDATA%/QuillApp`
+  <p>
+    <img src="https://img.shields.io/badge/version-1.1.0-blue" alt="version" />
+    <img src="https://img.shields.io/badge/license-MIT-green" alt="license" />
+    <img src="https://img.shields.io/badge/platform-Windows-lightgrey" alt="platform" />
+    <img src="https://img.shields.io/badge/python-3.12-blue" alt="python" />
+  </p>
+</div>
 
 ---
 
-## 🛠️ Tech Stack
+Quill runs in your system tray. Press a global hotkey, speak, and it types the transcribed text into your active window—code editor, browser, chat app, anywhere.
 
-Quill is built using a modern, lightweight desktop architecture:
-- **Backend**: **Python 3.12** handling global hotkey hooks, audio recording, and API orchestration.
-- **Frontend**: **HTML5/CSS3/JS** bundled within a **pywebview** window for a native, Electron-free experience.
-- **AI Integration**: REST clients for NVIDIA NIM and Groq API endpoints.
-- **System Integration**: Keyboard simulation for automated typing across the Windows environment.
+## What it does
 
----
+**Dictation**
+- Types directly into any active window using keyboard simulation
+- Audio cue (configurable beep) signals when listening and when transcription completes
 
-## 📥 Installation
+**STT providers**
+- NVIDIA NIM (Parakeet-1.1b)
+- Groq (Whisper V3, Whisper Flash)
 
-### 1. Prerequisites
-Ensure you have [Python 3.12](https://www.python.org/) installed and your API keys ready (NVIDIA/Groq).
+**Architecture**
+- Free API tiers, no heavy local compute required
+- Global hotkey listener runs silently in the background
+- Switch providers and models in settings
 
-### 2. Setup
+## Where config lives
+
+| Platform | Path |
+| :--- | :--- |
+| **Windows** | `%APPDATA%/QuillApp` |
+
+## Install
+
+**Requirements**
+- [Python 3.12](https://www.python.org/)
+- API keys for NVIDIA or Groq
+
 ```bash
-# Clone the repository
 git clone https://github.com/noahain/quill
-
-# Enter the project folder
 cd quill
-
-# Install dependencies
 py -3.12 -m pip install -r requirements.txt
-
-# Run the app
 py -3.12 main.py
 ```
 
----
+## Tech stack
 
-## 🤖 Agentic Development
+Python 3.12 · `pywebview` · HTML/CSS/JS · NVIDIA NIM · Groq
 
-Quill was developed through an advanced **Human-AI Collaboration** workflow:
-- **Lead Architect:** Noahain (Product Vision & Logic Direction)
-- **Primary Developer:** **OpenCode** (Powered by **Kimi K2.6**) - Implemented the global hotkey listeners, API integrations, and the core frontend state management.
-- **Technical Consultant:** **DeepSeek V4 Pro MAX** - Provided architectural guidance, optimized audio buffer handling, and refined the keyboard simulation logic.
+## Development story
 
----
+- **Lead:** Noahain - product vision, logic direction
+- **Primary developer:** OpenCode (Kimi K2.6) - global hotkey listeners, API integrations, frontend state
+- **Technical consultant:** DeepSeek V4 Pro - architecture, audio buffer handling, keyboard simulation
 
-## ⚖️ License & Disclaimer
+## License
 
-**License:** MIT 
-
-Built with ❤️ and Artificial Intelligence.
+MIT
 
